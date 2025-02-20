@@ -26,7 +26,8 @@ export function UpdateInvoice({ id }: { id: string }) {
 }
 
 export function DeleteInvoice({ id }: { id: string }) {
-  const deleteInvoiceWithId = async () => {
+  const deleteInvoiceWithId = async (event: React.FormEvent) => {
+    event.preventDefault(); // Prevent the form from submitting the traditional way
     try {
       await deleteInvoice(id);
     } catch (error) {
@@ -35,7 +36,7 @@ export function DeleteInvoice({ id }: { id: string }) {
   };
 
   return (
-    <form action={deleteInvoiceWithId}>
+    <form onSubmit={deleteInvoiceWithId}>
       <button type="submit" className="rounded-md border p-2 hover:bg-gray-100">
         <span className="sr-only">Delete</span>
         <TrashIcon className="w-4" />
