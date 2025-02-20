@@ -104,7 +104,7 @@ async function seedRevenue() {
 export async function GET() {
   try {
     // Execute all seeding operations in a transaction
-    await sql.begin((_sql) => [
+    await sql.begin(() => [
       seedUsers(),
       seedCustomers(),
       seedInvoices(),
